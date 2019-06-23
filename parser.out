@@ -1,0 +1,360 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> json
+Rule 1     json -> array
+Rule 2     json -> object
+Rule 3     array -> LEFT_BRACKET valuelist RIGHT_BRACKET
+Rule 4     valuelist -> valuelist COMMA value
+Rule 5     valuelist -> value
+Rule 6     valuelist -> empty
+Rule 7     object -> LEFT_BRACES middle_section RIGHT_BRACES
+Rule 8     middle_section -> middle_section COMMA pair
+Rule 9     middle_section -> pair
+Rule 10    middle_section -> empty
+Rule 11    pair -> STRING COLON value
+Rule 12    value -> STRING
+Rule 13    value -> NUM
+Rule 14    value -> array
+Rule 15    value -> object
+Rule 16    value -> TRUE
+Rule 17    value -> FALSE
+Rule 18    value -> NULL
+Rule 19    empty -> <empty>
+
+Terminals, with rules where they appear
+
+COLON                : 11
+COMMA                : 4 8
+FALSE                : 17
+LEFT_BRACES          : 7
+LEFT_BRACKET         : 3
+NULL                 : 18
+NUM                  : 13
+RIGHT_BRACES         : 7
+RIGHT_BRACKET        : 3
+STRING               : 11 12
+TRUE                 : 16
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 1 14
+empty                : 6 10
+json                 : 0
+middle_section       : 7 8
+object               : 2 15
+pair                 : 8 9
+value                : 4 5 11
+valuelist            : 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . json
+    (1) json -> . array
+    (2) json -> . object
+    (3) array -> . LEFT_BRACKET valuelist RIGHT_BRACKET
+    (7) object -> . LEFT_BRACES middle_section RIGHT_BRACES
+
+    LEFT_BRACKET    shift and go to state 4
+    LEFT_BRACES     shift and go to state 5
+
+    json                           shift and go to state 1
+    array                          shift and go to state 2
+    object                         shift and go to state 3
+
+state 1
+
+    (0) S' -> json .
+
+
+
+state 2
+
+    (1) json -> array .
+
+    $end            reduce using rule 1 (json -> array .)
+
+
+state 3
+
+    (2) json -> object .
+
+    $end            reduce using rule 2 (json -> object .)
+
+
+state 4
+
+    (3) array -> LEFT_BRACKET . valuelist RIGHT_BRACKET
+    (4) valuelist -> . valuelist COMMA value
+    (5) valuelist -> . value
+    (6) valuelist -> . empty
+    (12) value -> . STRING
+    (13) value -> . NUM
+    (14) value -> . array
+    (15) value -> . object
+    (16) value -> . TRUE
+    (17) value -> . FALSE
+    (18) value -> . NULL
+    (19) empty -> .
+    (3) array -> . LEFT_BRACKET valuelist RIGHT_BRACKET
+    (7) object -> . LEFT_BRACES middle_section RIGHT_BRACES
+
+    STRING          shift and go to state 9
+    NUM             shift and go to state 10
+    TRUE            shift and go to state 13
+    FALSE           shift and go to state 14
+    NULL            shift and go to state 15
+    RIGHT_BRACKET   reduce using rule 19 (empty -> .)
+    COMMA           reduce using rule 19 (empty -> .)
+    LEFT_BRACKET    shift and go to state 4
+    LEFT_BRACES     shift and go to state 5
+
+    valuelist                      shift and go to state 6
+    value                          shift and go to state 7
+    empty                          shift and go to state 8
+    array                          shift and go to state 11
+    object                         shift and go to state 12
+
+state 5
+
+    (7) object -> LEFT_BRACES . middle_section RIGHT_BRACES
+    (8) middle_section -> . middle_section COMMA pair
+    (9) middle_section -> . pair
+    (10) middle_section -> . empty
+    (11) pair -> . STRING COLON value
+    (19) empty -> .
+
+    STRING          shift and go to state 19
+    RIGHT_BRACES    reduce using rule 19 (empty -> .)
+    COMMA           reduce using rule 19 (empty -> .)
+
+    middle_section                 shift and go to state 16
+    pair                           shift and go to state 17
+    empty                          shift and go to state 18
+
+state 6
+
+    (3) array -> LEFT_BRACKET valuelist . RIGHT_BRACKET
+    (4) valuelist -> valuelist . COMMA value
+
+    RIGHT_BRACKET   shift and go to state 20
+    COMMA           shift and go to state 21
+
+
+state 7
+
+    (5) valuelist -> value .
+
+    RIGHT_BRACKET   reduce using rule 5 (valuelist -> value .)
+    COMMA           reduce using rule 5 (valuelist -> value .)
+
+
+state 8
+
+    (6) valuelist -> empty .
+
+    RIGHT_BRACKET   reduce using rule 6 (valuelist -> empty .)
+    COMMA           reduce using rule 6 (valuelist -> empty .)
+
+
+state 9
+
+    (12) value -> STRING .
+
+    RIGHT_BRACKET   reduce using rule 12 (value -> STRING .)
+    COMMA           reduce using rule 12 (value -> STRING .)
+    RIGHT_BRACES    reduce using rule 12 (value -> STRING .)
+
+
+state 10
+
+    (13) value -> NUM .
+
+    RIGHT_BRACKET   reduce using rule 13 (value -> NUM .)
+    COMMA           reduce using rule 13 (value -> NUM .)
+    RIGHT_BRACES    reduce using rule 13 (value -> NUM .)
+
+
+state 11
+
+    (14) value -> array .
+
+    RIGHT_BRACKET   reduce using rule 14 (value -> array .)
+    COMMA           reduce using rule 14 (value -> array .)
+    RIGHT_BRACES    reduce using rule 14 (value -> array .)
+
+
+state 12
+
+    (15) value -> object .
+
+    RIGHT_BRACKET   reduce using rule 15 (value -> object .)
+    COMMA           reduce using rule 15 (value -> object .)
+    RIGHT_BRACES    reduce using rule 15 (value -> object .)
+
+
+state 13
+
+    (16) value -> TRUE .
+
+    RIGHT_BRACKET   reduce using rule 16 (value -> TRUE .)
+    COMMA           reduce using rule 16 (value -> TRUE .)
+    RIGHT_BRACES    reduce using rule 16 (value -> TRUE .)
+
+
+state 14
+
+    (17) value -> FALSE .
+
+    RIGHT_BRACKET   reduce using rule 17 (value -> FALSE .)
+    COMMA           reduce using rule 17 (value -> FALSE .)
+    RIGHT_BRACES    reduce using rule 17 (value -> FALSE .)
+
+
+state 15
+
+    (18) value -> NULL .
+
+    RIGHT_BRACKET   reduce using rule 18 (value -> NULL .)
+    COMMA           reduce using rule 18 (value -> NULL .)
+    RIGHT_BRACES    reduce using rule 18 (value -> NULL .)
+
+
+state 16
+
+    (7) object -> LEFT_BRACES middle_section . RIGHT_BRACES
+    (8) middle_section -> middle_section . COMMA pair
+
+    RIGHT_BRACES    shift and go to state 22
+    COMMA           shift and go to state 23
+
+
+state 17
+
+    (9) middle_section -> pair .
+
+    RIGHT_BRACES    reduce using rule 9 (middle_section -> pair .)
+    COMMA           reduce using rule 9 (middle_section -> pair .)
+
+
+state 18
+
+    (10) middle_section -> empty .
+
+    RIGHT_BRACES    reduce using rule 10 (middle_section -> empty .)
+    COMMA           reduce using rule 10 (middle_section -> empty .)
+
+
+state 19
+
+    (11) pair -> STRING . COLON value
+
+    COLON           shift and go to state 24
+
+
+state 20
+
+    (3) array -> LEFT_BRACKET valuelist RIGHT_BRACKET .
+
+    $end            reduce using rule 3 (array -> LEFT_BRACKET valuelist RIGHT_BRACKET .)
+    RIGHT_BRACKET   reduce using rule 3 (array -> LEFT_BRACKET valuelist RIGHT_BRACKET .)
+    COMMA           reduce using rule 3 (array -> LEFT_BRACKET valuelist RIGHT_BRACKET .)
+    RIGHT_BRACES    reduce using rule 3 (array -> LEFT_BRACKET valuelist RIGHT_BRACKET .)
+
+
+state 21
+
+    (4) valuelist -> valuelist COMMA . value
+    (12) value -> . STRING
+    (13) value -> . NUM
+    (14) value -> . array
+    (15) value -> . object
+    (16) value -> . TRUE
+    (17) value -> . FALSE
+    (18) value -> . NULL
+    (3) array -> . LEFT_BRACKET valuelist RIGHT_BRACKET
+    (7) object -> . LEFT_BRACES middle_section RIGHT_BRACES
+
+    STRING          shift and go to state 9
+    NUM             shift and go to state 10
+    TRUE            shift and go to state 13
+    FALSE           shift and go to state 14
+    NULL            shift and go to state 15
+    LEFT_BRACKET    shift and go to state 4
+    LEFT_BRACES     shift and go to state 5
+
+    value                          shift and go to state 25
+    array                          shift and go to state 11
+    object                         shift and go to state 12
+
+state 22
+
+    (7) object -> LEFT_BRACES middle_section RIGHT_BRACES .
+
+    $end            reduce using rule 7 (object -> LEFT_BRACES middle_section RIGHT_BRACES .)
+    RIGHT_BRACKET   reduce using rule 7 (object -> LEFT_BRACES middle_section RIGHT_BRACES .)
+    COMMA           reduce using rule 7 (object -> LEFT_BRACES middle_section RIGHT_BRACES .)
+    RIGHT_BRACES    reduce using rule 7 (object -> LEFT_BRACES middle_section RIGHT_BRACES .)
+
+
+state 23
+
+    (8) middle_section -> middle_section COMMA . pair
+    (11) pair -> . STRING COLON value
+
+    STRING          shift and go to state 19
+
+    pair                           shift and go to state 26
+
+state 24
+
+    (11) pair -> STRING COLON . value
+    (12) value -> . STRING
+    (13) value -> . NUM
+    (14) value -> . array
+    (15) value -> . object
+    (16) value -> . TRUE
+    (17) value -> . FALSE
+    (18) value -> . NULL
+    (3) array -> . LEFT_BRACKET valuelist RIGHT_BRACKET
+    (7) object -> . LEFT_BRACES middle_section RIGHT_BRACES
+
+    STRING          shift and go to state 9
+    NUM             shift and go to state 10
+    TRUE            shift and go to state 13
+    FALSE           shift and go to state 14
+    NULL            shift and go to state 15
+    LEFT_BRACKET    shift and go to state 4
+    LEFT_BRACES     shift and go to state 5
+
+    value                          shift and go to state 27
+    array                          shift and go to state 11
+    object                         shift and go to state 12
+
+state 25
+
+    (4) valuelist -> valuelist COMMA value .
+
+    RIGHT_BRACKET   reduce using rule 4 (valuelist -> valuelist COMMA value .)
+    COMMA           reduce using rule 4 (valuelist -> valuelist COMMA value .)
+
+
+state 26
+
+    (8) middle_section -> middle_section COMMA pair .
+
+    RIGHT_BRACES    reduce using rule 8 (middle_section -> middle_section COMMA pair .)
+    COMMA           reduce using rule 8 (middle_section -> middle_section COMMA pair .)
+
+
+state 27
+
+    (11) pair -> STRING COLON value .
+
+    RIGHT_BRACES    reduce using rule 11 (pair -> STRING COLON value .)
+    COMMA           reduce using rule 11 (pair -> STRING COLON value .)
+
